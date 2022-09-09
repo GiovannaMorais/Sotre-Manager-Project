@@ -2,12 +2,13 @@ const express = require('express');
 
 const app = express();
 const productsController = require('./controllers/productsController');
+const productValidation = require('./middlewares/productValidation');
 
 app.use(express.json());
 
 app.get('/products', productsController.getProducts);
 app.get('/products/:id', productsController.getProductsById);
-app.post('/products', productsController.createProducts);
+app.post('/products', productValidation.validateName, productsController.createProducts);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
