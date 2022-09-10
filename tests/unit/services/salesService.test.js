@@ -24,19 +24,19 @@ describe('Testando camada Service', () => {
       expect(response.message).to.equal(getSalesById);
     });
   
-    it('Verificando a função accesSale', async () => {
-      sinon.stub(connection, 'execute').resolves([createSales]);
-      const response = await salesService.createSales(createSales);
-      expect(response.type).to.equal(null);
-      expect(response.message).to.equal(createSales);
-    });
+    // it('Verificando a função accesSale', async () => {
+    //   sinon.stub(connection, 'execute').resolves([createSales]);
+    //   const response = await salesService.createSales(createSales);
+    //   expect(response.type).to.equal(null);
+    //   expect(response.message).to.equal(createSales);
+    // });
 
-    it('Verificando a function getSales', async () => {
-      sinon.stub(connection, 'execute').resolves([getSales]);
-      const result = await salesService.getSales();
-      expect(result.type).to.equal(null);
-      expect(result.message).to.equal( {id, itemsSold: getSales});
-    })
+    // it('Verificando a function getSales', async () => {
+    //   sinon.stub(connection, 'execute').resolves([getSales]);
+    //   const result = await salesService.getSales();
+    //   expect(result.type).to.equal(null);
+    //   expect(result.message).to.equal( {id, itemsSold: getSales});
+    // })
 
     // it('Verificando a function updateProducts', async function () {
     // sinon.stub(connection, 'execute');
