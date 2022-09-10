@@ -40,9 +40,9 @@ const ValidationRequired = (req, res, next) => {
 };
 
 const validateId = async (req, res, next) => {
-  const data = req.body;
+  const products = req.body;
   const result = await Promise.all(
-    data.map((sale) => productsService.ExistsId(sale.productId)),
+    products.map((sale) => productsService.ExistsId(sale.productId)),
   );
   if (result.some((productId) => productId === 'Product not found')) {
     return res.status(404).json({ message: 'Product not found' });
