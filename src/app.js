@@ -12,6 +12,7 @@ app.get('/products', productsController.getProducts);
 app.get('/products/:id', productsController.getProductsById);
 app.post('/products', productValidation.validateName, productsController.createProducts);
 app.put('/products/:id', productValidation.validateName, productsController.updateProducts);
+app.delete('/products/:id', productsController.deleteProducts);
 
 app.post('/sales',
   salesValidation.ValidationRequired,
