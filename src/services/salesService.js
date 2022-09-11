@@ -1,10 +1,10 @@
 const salesModel = require('../models/salesModel');
 // const productsModel = require('../models/productsModel');
 
-const createSales = async (saleInfo) => {
+const createSales = async (sale) => {
   const { id } = await salesModel.accesSaleDate();
 
-  const test = await Promise.all(saleInfo.map(({ productId, quantity }) =>
+  const test = await Promise.all(sale.map(({ productId, quantity }) =>
     salesModel.accesSale({ saleId: id, productId, quantity })));
   // return { type: null, message: { id, itemSold: test } };
   return { id, itemsSold: test };
@@ -20,8 +20,16 @@ const getSalesById = async (id) => {
   return { type: null, message: sales };
 };
 
+const deleteSales = async (id) => {
+  const [verifyId] = await salesModel.getSalesById(id);
+  if (!verifyId) return { type: 404, message: 'Sale not found' };
+  const sales = await salesModel.deleteSales(id);
+  return sales;
+};
+
 module.exports = {
   getSales,
   createSales,
   getSalesById,
+  deleteSales,
 };
