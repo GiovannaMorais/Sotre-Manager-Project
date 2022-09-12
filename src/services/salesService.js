@@ -9,6 +9,13 @@ const createSales = async (sale) => {
   // return { type: null, message: { id, itemSold: test } };
   return { id, itemsSold: test };
 };
+const updateSales = async (sale) => {
+  console.log('sale', sale);
+  const { id } = await salesModel.accesSaleDate();
+   await Promise.all(sale.map(({ productId, quantity }) =>
+     salesModel.updateSales({ saleId: id, productId, quantity })));
+  return { saleId: id, itemsUpdated: sale }; 
+};
 const getSales = async () => {
   const sales = await salesModel.getSales();
   return { type: null, message: sales };
@@ -27,9 +34,17 @@ const deleteSales = async (id) => {
   return sales;
 };
 
+const ExistsSaleId = async (id) => {
+  const products = await salesModel.getSalesById(id);
+  console.log('bieber', products);
+  if (!products) return 'Sale not found'; 
+};
+
 module.exports = {
   getSales,
   createSales,
   getSalesById,
   deleteSales,
+  updateSales,
+  ExistsSaleId,
 };
