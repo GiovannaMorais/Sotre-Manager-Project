@@ -5,7 +5,7 @@ const salesService = require("../../../src/services/salesService");
 const connection = require("../../../src/models/connection");
 
 const messageNotFound = {
-  message: "Product not found",
+  message: "Sale not found",
 };
 
 const {
@@ -23,40 +23,16 @@ describe('Testando camada Service', () => {
       expect(response.type).to.equal(null);
       expect(response.message).to.equal(getSalesById);
     });
-  
-    // it('Verificando a função accesSale', async () => {
-    //   sinon.stub(connection, 'execute').resolves([createSales]);
-    //   const response = await salesService.createSales(createSales);
-    //   expect(response.type).to.equal(null);
-    //   expect(response.message).to.equal(createSales);
-    // });
+  it('Verificando a function deleteSales', async () => {
+    sinon.stub(connection, 'execute');
+    sinon.stub(salesModel, 'getSalesById').resolves([]);
 
-    // it('Verificando a function getSales', async () => {
-    //   sinon.stub(connection, 'execute').resolves([getSales]);
-    //   const result = await salesService.getSales();
-    //   expect(result.type).to.equal(null);
-    //   expect(result.message).to.equal( {id, itemsSold: getSales});
-    // })
+    await salesService.deleteSales(2);
 
-    // it('Verificando a function updateProducts', async function () {
-    // sinon.stub(connection, 'execute');
-    // sinon.stub(salesModel, 'getProductsById').resolves([{updateProducts}]);
-  
+    const result = await salesService.getSalesById(2);
 
-    // const result = await salesModel.updateProducts(4, "Escudo Superman");
-
-    // expect(result).to.deep.equal(updateProducts);
-    // });
-    
-  //   it('Verificando a function deleteProducts', async () => {
-  //   sinon.stub(connection, 'execute');
-  //   sinon.stub(salesModel, 'getProductsById').resolves([]);
-
-  //   await salesModel.deleteProducts(2);
-
-  //   const result = await salesModel.getProductsById(2);
-
-  //   expect(result).to.be.an('array');
-  // });
+    expect(result.type).to.equal(404);
+    expect(result.message).to.deep.equal(messageNotFound.message);
+    });
   });
 });

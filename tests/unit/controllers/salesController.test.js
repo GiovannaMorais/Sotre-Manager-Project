@@ -62,7 +62,6 @@ describe("Testando camada Controller", () => {
         body: {
           ...createSales
         }};
-      // req.params = { id: 2 };
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
 
@@ -72,6 +71,30 @@ describe("Testando camada Controller", () => {
       
     });
 
+    it('Verificando a function updateSales', async () => {
+      sinon
+        .stub(salesService, "updateSales")
+        .resolves({ type: 404, message: 'Sale not found' });
+      const res = {};
+      const req = {};
+      req.params = { id: 999 };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      await salesController.updateSales(req, res);
+      expect(res.status.calledWith(404)).to.be.equal(true)
+    });
+  it('Verificando a function deleteSales', async () => {
+      sinon
+        .stub(salesService, "deleteSales")
+        .resolves({ type: 204});
+      const res = {};
+      const req = {};
+      req.params = { id: 2 };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      await salesController.deleteSales(req, res);
+      expect(res.status.calledWith(204)).to.be.equal(true)
+    });
 
   });
 });

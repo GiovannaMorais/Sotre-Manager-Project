@@ -30,11 +30,8 @@ const updateSales = async (req, res) => {
   const sales = req.body;
   const ids = req.params;
   const verifyId = await salesService.getSalesById(ids.id);
-  console.log('ids', ids);
   
-  console.log('containsId', verifyId);
   if (verifyId.type === 404) {
-    console.log('entrou');
     return res.status(404).json({ message: 'Sale not found' });
   }
   const sale = await salesService.updateSales(sales);

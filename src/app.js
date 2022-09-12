@@ -7,7 +7,7 @@ const salesValidation = require('./middlewares/salesValidation');
 const salesController = require('./controllers/salesController');
 
 app.use(express.json());
-
+app.get('/products/search', productsController.getProductsSearch);
 app.get('/products', productsController.getProducts);
 app.get('/products/:id', productsController.getProductsById);
 app.post('/products', productValidation.validateName, productsController.createProducts);

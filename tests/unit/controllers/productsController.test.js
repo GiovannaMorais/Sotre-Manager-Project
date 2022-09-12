@@ -93,23 +93,6 @@ describe("Testando camada Model", () => {
       expect(res.status.calledOnceWith(200)).to.be.true;
     });
 
-    // it("Verificando a function deleteProducts", async () => {
-    //   sinon
-    //     .stub(productsService, "getProductsById")
-    //     .returns([{message:messageNotFound }]);
-      
-    //   const res = {};
-    //   const req = {};
-    //   req.params = { id: 300000 };
-    //   res.status = sinon.stub().returns(res);
-    //   res.json = sinon.stub().returns();
-
-    //   await productsController.deleteProducts(req, res);
-
-    //   expect(res.json.calledWith(messageNotFound)).to.be.false;
-    //   expect(res.status.calledOnceWith(404)).to.be.true;
-    // });
-
     it("Verificando a function deleteProducts", async () => {
       sinon
         .stub(productsService, "deleteProducts")
@@ -122,9 +105,8 @@ describe("Testando camada Model", () => {
       res.json = sinon.stub().returns();
 
       await productsController.deleteProducts(req, res);
-
-      // expect(res.json.calledWith(messageNotFound)).to.be.true;
       expect(res.status.calledOnceWith(204)).to.be.true;
     });
+    
   });
 });

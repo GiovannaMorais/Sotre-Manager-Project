@@ -34,6 +34,11 @@ const deleteProducts = async (productId) => {
   return products;
 };
 
+const getProductsSearch = async (name) => {
+  const products = await productsModel.getProductsSearch(name);
+  return products; 
+};
+
 module.exports = {
   getProducts,
   getProductsById,
@@ -41,4 +46,5 @@ module.exports = {
   ExistsId,
   updateProducts,
   deleteProducts,
+  getProductsSearch,
 };

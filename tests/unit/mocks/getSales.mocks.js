@@ -6,6 +6,13 @@ const createSales = [
 		"quantity": 5
 	},
 ]
+const updateSales = [{
+		"saleId": 2,
+		"date": "2022-09-12T15:18:31.000Z",
+		"productId": 3,
+		"quantity": 16
+	}]
+
 
 const getSales = [
 	{
@@ -46,5 +53,6 @@ const getSalesById = [
 module.exports = {
   createSales,
   getSales,
-  getSalesById
+  getSalesById,
+  updateSales
 }

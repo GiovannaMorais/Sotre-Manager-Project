@@ -5,6 +5,11 @@ const getProducts = async () => {
   const [result] = await connection.execute(query);
   return result;
 };
+const getProductsSearch = async () => {
+  const query = 'SELECT id,name FROM StoreManager.products ';
+  const [result] = await connection.execute(query);
+  return result;
+};
 
 const getProductsById = async (id) => {
   const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
@@ -36,4 +41,5 @@ module.exports = {
   createProducts,
   updateProducts,
   deleteProducts,
+  getProductsSearch,
 };
