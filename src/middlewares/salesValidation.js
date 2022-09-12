@@ -1,6 +1,5 @@
 const joi = require('joi');
 const productsService = require('../services/productsService');
-const salesService = require('../services/salesService');
 
 const schema = joi.array().items(
   joi.object({
